@@ -1,0 +1,67 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Inter", sans-serif;
+
+    background: linear-gradient(to bottom, rgb(0, 42, 87), rgb(0, 0, 0));
+    height: 77.5vh;
+}
+
+.loginWrapper {
+    margin: 210px 50px;
+}
+
+.loginHeader {
+    margin-bottom: 50px;
+}
+
+.loginHeader h1 {
+  color: white;  
+  margin-bottom: 10px;
+  font-weight: bold;
+  font-size: xx-large;
+  letter-spacing: 2px;
+}
+
+.loginHeader p {
+    color: #999;
+    font-weight: bold;
+}
+
+.input {
+    background-color: #36343B;
+    color: white;
+    margin-left: 10px;
+    border-radius: 10px;
+    border: none;
+    width: 85%;
+    height: 100%;
+}
+
+.input:focus {
+    outline: none;
+  }
+  
+
+.input::placeholder {
+    color: white;
+}
+  
+.inputForm {
+    background-color: #36343B;
+    border-bottom: 1.5px solid #ecedec;
+    border-radius: 5px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    transition: 0.2s ease-in-out;
+    margin-bottom: 32px;
+}
+
+.inputForm svg path {
+    fill: #ffffff; /* Define a cor do ícone SVG para branco */
+  }
