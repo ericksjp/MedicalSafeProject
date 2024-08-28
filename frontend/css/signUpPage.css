@@ -17,11 +17,20 @@ body {
   flex-wrap: wrap;
 }
 
-.loginHeader {
+.arrowBack {
+  margin: 24px;
+  width: 32px;
+  height: 32px;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.signUpHeader {
   margin-bottom: 50px;
 }
 
-.loginHeader h1 {
+.signUpHeader h1 {
   color: white;
   margin-bottom: 10px;
   font-weight: bold;
@@ -29,7 +38,7 @@ body {
   letter-spacing: 2px;
 }
 
-.loginHeader p {
+.signUpHeader p {
   color: #999;
   font-weight: bold;
 }
@@ -68,7 +77,7 @@ body {
   fill: #ffffff; /* Define a cor do ícone SVG para branco */
 }
 
-.loginButton {
+.signUpButton {
   background: #7079f0;
   color: white;
   font-family: inherit;
@@ -89,12 +98,12 @@ body {
   padding-right: 3em;
 }
 
-.loginButton:hover {
+.signUpButton:hover {
   transform: translate(-0.05em, -0.05em);
   box-shadow: 0.15em 0.15em #5566c2;
 }
 
-.loginButton:active {
+.signUpButton:active {
   transform: translate(0.05em, 0.05em);
   box-shadow: 0.05em 0.05em #5566c2;
 }
@@ -111,18 +120,4 @@ body {
   box-shadow: 0.1em 0.1em 0.6em 0.2em #7a8cf3;
   right: 0.3em;
   transition: all 0.3s;
-}
-
-footer {
-  justify-content: center;
-  position: absolute;
-  bottom: 0;
-
-  padding: 30px 0;
-}
-
-footer p {
-  color: #999;
-  font-size: small;
-  font-weight: bold;
 }
