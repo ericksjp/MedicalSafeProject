@@ -3,15 +3,17 @@
     padding: 0;
 }
 
-body {
+html, body {
     font-family: "Inter", sans-serif;
 
     background: linear-gradient(to bottom, rgb(0, 42, 87), rgb(0, 0, 0));
-    height: 77.9vh;
-}
+    height: 100%;
 
-.loginWrapper {
-    margin: 210px 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
 .loginHeader {
@@ -112,9 +114,11 @@ body {
 }
 
 footer {
-    display: flex;
     justify-content: center;
-    margin-top: 33vh;
+    position: absolute;
+    bottom: 0;
+
+    padding: 30px 0;
 }
 
 footer p {
