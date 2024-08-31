@@ -3,9 +3,20 @@
   padding: 0;
 }
 
-.container {
-  height: 100vh;
+.closeIcon {
+  width: 32px;
+  height: 32px;
+  margin-top: 24px;
+  margin-left: 24px;
+  position: absolute;
+  left: 0;
+}
+
+html, body {
+  height: 100%;
   background-color: #1c3f5d;
+  display: flex;
+  flex-direction: column;
 }
 
 .addNameHeader {
@@ -13,6 +24,8 @@
   flex-direction: column;
   justify-content: end;
   height: 25%;
+  margin-left: 3%;
+  margin-bottom: 5%;
 }
 
 #medicationIcon {
@@ -30,14 +43,15 @@
   font-family: "Inter", sans-serif;
   color: white;
   font-size: x-large;
-  margin-bottom: 7.5%;
+  
 }
 
 .addNameWrapper {
   display: flex;
   justify-content: center;
   background-color: #1c1c1e;
-  border-radius: 12px;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
   height: 75%;
 }
 
@@ -66,4 +80,13 @@
   height: 50px;
   align-items: center;
   transition: 0.2s ease-in-out;
+}
+
+.arrowRightButton img {
+  width: 56px;
+  height: 56px;
+  margin: 32px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
 }
