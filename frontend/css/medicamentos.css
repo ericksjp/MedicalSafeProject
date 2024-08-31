@@ -1,0 +1,89 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+body {
+    font-family: "Inter", sans-serif;
+
+    background: linear-gradient(to bottom, rgb(0, 42, 87), rgb(0, 0, 0)) repeat-y;
+    height: 100vh;
+}
+#perfil-usuario{
+    background-color:#1686c5;
+    height: 50px;
+}
+#icone-pessoa{
+    background-color: #c3d7e2;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-left: 10px;
+    margin-top: 4px;
+    text-align: center;
+}
+#icone-pessoa img{
+    width: 40px;
+}
+#icone-pessoa, #nome-usuario{
+    display: inline-block;
+}
+#nome-usuario{
+    padding-left: 10px;
+    position: relative;
+    top: -13px;
+    color: white;
+}
+#medicamento-ativo{
+    color: rgb(177, 173, 173);
+    font-size: 14px;
+    padding: 20px;
+}
+#adicionar-medicamentos{
+    width: 300px;
+    text-align: center;
+    position: absolute;
+    bottom: 90px;
+    left: 50%;
+    transform: translateX(-50%);
+} 
+#adicionar-medicamentos a{
+    text-decoration: none;
+    color: white;
+    background-color: #0c4c81;
+    display: block;
+    padding: 10px 20px;
+    border-radius: 20px;
+}
+footer{
+    background-color: #1c1c1e;
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    height: 50px;
+}
+footer #navegacao-center{
+    text-align: center;
+}
+#icone-inicio a, #icone-medicamento a{
+    color: white;
+}
+#icone-inicio:active .material-symbols-outlined,
+#icone-medicamento:active .material-symbols-outlined,
+#icone-inicio:active p,
+#icone-medicamento:active p{
+    color: #0c4c81;
+}
+
+#icone-inicio img, #icone-medicamento img{
+    height: 30px;
+}
+#icone-inicio, #icone-medicamento{
+    display: inline-block;
+    padding-top: 7px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+#icone-inicio p, #icone-medicamento p{
+    font-size: 10px;
+    color: white;
+}
