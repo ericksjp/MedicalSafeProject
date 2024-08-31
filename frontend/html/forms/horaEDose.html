@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="../../css/formsStyle/formStyle.css">
+    <link rel="stylesheet" href="../../css/formsStyle/horaEDose.css">
+
+    <title>Add Medication</title>
+</head>
+<body>
+    <a href="frequenciaDia.html"
+    ><img
+        src="../../assets/img/whiteArrowLeft.png"
+        class="previousPageButton"
+/></a>
+
+<div class="containerHeader">
+    <img src="../../assets/img/horaEDose.png" class="headerIcon"/>
+    <h1>Definir hora e dose</h1>
+</div>
+
+<div class="containerWrapper">
+    <div class="doseForm">
+        <label for="inputDose">Tomar</label>
+        <input type="number" min="1" max="100" value="1" onfocus="this.value=''" id="inputDose">
+        <label for="inputDose"><strong>Comprimido(s)</strong></label>
+    </div>
+
+    <div class="inputForm">
+        <input type="time" id="inputTime" class="input">
+    </div>
+</div>
+
+<a href="../forms/horaEDose.html" class="nextPageButton"
+    ><img src="../../assets/img/arrowRightButton.png"
+/></a>
+</body>
+</html>

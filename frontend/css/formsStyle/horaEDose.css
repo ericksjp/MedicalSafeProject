@@ -1,0 +1,37 @@
+.doseForm {
+    font-family: "Inter", sans-serif;
+    color: white;
+    font-size: x-large;
+    margin: 5% 10.5%;
+}
+
+#inputDose {
+    background-color: #1c1c1e;
+    border: none;
+    font-family: "Inter", sans-serif;
+    color: white;
+    font-size: x-large;
+    font-weight: bold;
+    text-align: center;
+    width: 15%;
+}
+
+#inputDose:focus {
+    outline: none;
+}
+
+.containerWrapper {
+    flex-direction: column;
+    justify-content: start;
+}
+
+.inputForm {
+    margin-top: 60px;
+    align-self: center;
+    width: 79.5%;
+}
+
+.input {
+    width: 98%;
+}
+
