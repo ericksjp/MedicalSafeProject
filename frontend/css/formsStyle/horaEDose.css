@@ -2,7 +2,7 @@
     font-family: "Inter", sans-serif;
     color: white;
     font-size: x-large;
-    margin: 5% 10.5%;
+    margin: 7.5% 10.5%;
 }
 
 #inputDose {
@@ -26,7 +26,7 @@
 }
 
 .inputForm {
-    margin-top: 60px;
+    margin-top: 50px;
     align-self: center;
     width: 79.5%;
 }
