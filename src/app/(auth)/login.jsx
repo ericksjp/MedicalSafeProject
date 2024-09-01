@@ -12,7 +12,7 @@ const Login = () => {
   const router = useRouter();
 
   const handleSignIn = () => {
-    // router.replace("/home");
+    router.replace("/home");
   };
 
   return (

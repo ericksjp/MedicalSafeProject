@@ -13,7 +13,7 @@ const SignUp = () => {
   const router = useRouter();
 
   function handleSignUp() {
-    // router.push("/home");
+    router.replace("/home");
   }
 
   return (
