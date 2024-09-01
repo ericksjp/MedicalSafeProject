@@ -1,12 +1,12 @@
 import { View, Text } from "react-native";
 import React from "react";
 
-const index = () => {
+const Index = () => {
   return (
-    <View>
-      <Text>index</Text>
+    <View className="h-full w-full flex justify-center items-center">
+      <Text className="text-black">Index</Text>
     </View>
   );
 };
 
-export default index;
+export default Index;
