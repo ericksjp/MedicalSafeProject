@@ -5,9 +5,9 @@ import { images } from "../constants";
 
 const AuthAppBar = ({ title, icon }) => (
   <Appbar.Header
-    mode="large"
+    mode="small"
     style={{
-      backgroundColor: "#1d3e5d",
+      backgroundColor: "#6750a4",
       paddingHorizontal: 20,
       height: 80,
     }}
@@ -21,6 +21,7 @@ const AuthAppBar = ({ title, icon }) => (
         color: "white",
       }}
     />
+    {/* <Appbar.Action icon={images.logo} /> */}
     <Image source={images.logo} style={styles.tinyLogo} />
   </Appbar.Header>
 );
