@@ -1,5 +1,7 @@
-import { Stack } from "expo-router";
+import { Stack, SplashScreen } from "expo-router";
 import "../styles/global.css";
+
+SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
   const [fontsLoaded, error] = useFonts({
