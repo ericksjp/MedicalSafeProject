@@ -72,6 +72,26 @@ const Calendar = ({ span, handleSetSelectedDay }) => {
     });
   };
 
+  function getItemLayout(_, index) {
+    return {
+      length: 50,
+      offset: 50 * index,
+      index,
+    };
+  }
+
+  function renderItem({ item, index }) {
+    return (
+      <Item
+        dayName={item.dayName}
+        dateNumber={item.day}
+        isSelected={index === selectedIndex}
+        isToday={index === span}
+        onPress={() => handleItemPress(index)}
+      />
+    );
+  }
+
   useEffect(() => {
     flatListRef.current.scrollToIndex({
       index: span - 3,
@@ -80,41 +100,29 @@ const Calendar = ({ span, handleSetSelectedDay }) => {
     });
   }, []);
 
-  const getItemLayout = (_, index) => ({
-    length: 50,
-    offset: 50 * index,
-    index,
-  });
-
   return (
     <View className="bg-[#6750a4] p-4 gap-2">
       <View className="w-full flex flex-row items-center gap-2">
         <TouchableOpacity onPress={handleLeftPress}>
           <Text className="text-white">{"<"}</Text>
         </TouchableOpacity>
+
         <FlatList
-          className="self-center w-[90%]"
+          className="self-center w-full"
           ref={flatListRef}
           data={dates}
           horizontal
-          renderItem={({ item, index }) => (
-            <Item
-              dayName={item.dayName}
-              dateNumber={item.day}
-              isSelected={index === selectedIndex}
-              isToday={index === span}
-              onPress={() => handleItemPress(index)}
-            />
-          )}
+          renderItem={renderItem}
           keyExtractor={(_, index) => index.toString()}
           contentContainerStyle={{
             flexDirection: "row",
             justifyContent: "start",
           }}
           showsHorizontalScrollIndicator={false}
-          initialNumToRender={14}
+          initialNumToRender={7}
           getItemLayout={getItemLayout}
         />
+
         <TouchableOpacity onPress={handleRightPress}>
           <Text className="text-white">{">"}</Text>
         </TouchableOpacity>
