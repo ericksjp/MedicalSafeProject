@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 import { Divider } from "react-native-paper";
-import { MyModal } from "../components";
+import MyModal from "./MyModal";
 
 const MedReminder = ({ time, medication, dosage, onDelete, status }) => {
   const [deleteModalVisible, setDeleteModalVisible] = useState(false);
