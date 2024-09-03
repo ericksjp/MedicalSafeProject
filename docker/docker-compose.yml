@@ -1,0 +1,13 @@
+services:
+  build-optimizer:
+    build: 
+      context: ../
+      dockerfile: ./docker/app/Dockerfile
+    volumes:
+      - ../:/home/src/app
+    stdin_open: true
+    tty: true
+    container_name: MedicalSafeBuilder
+    environment:
+      - EXPO_TOKEN=0RB0f2z4Y20N8bikt7FNhFh1nuarvnX9eKWDijL1
+    command: /bin/bash -c "eas build --profile preview --platform android --local"
