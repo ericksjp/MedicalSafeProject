@@ -30,7 +30,7 @@ const FabThing = () => {
               icon: "pill",
               label: "Adicionar Medicamento",
               labelTextColor: "#e2e8f0",
-              onPress: () => router.push("nome"),
+              onPress: () => router.push("nomeMedicamento"),
             },
           ]}
           onStateChange={onStateChange}
