@@ -26,7 +26,7 @@ export default function FrequenciaDias() {
 
   const handleALlDays = () => {
     setDays([true, true, true, true, true, true, true]);
-    router.push("/quantidadeMedicamento");
+    router.push("/primeiraDose");
   };
 
   const renderChip = (index, day) => (
@@ -88,7 +88,7 @@ export default function FrequenciaDias() {
               icon="arrow-right-bold"
               iconColor={"#6750a4"}
               size={50}
-              onPress={() => router.push("/quantidadeMedicamento")}
+              onPress={() => router.push("/primeiraDose")}
               disabled={days.every((day) => !day)}
               style={{ alignSelf: "flex-end" }}
             />
