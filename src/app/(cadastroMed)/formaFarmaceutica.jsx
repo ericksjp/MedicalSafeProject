@@ -17,7 +17,7 @@ const values = [
 export default function FormaFarmaceutica() {
   const renderItem = ({ item }) => (
     <Button
-      onPress={() => router.push("/quantidadeMedicamento")}
+      onPress={() => router.push("/frequenciaDias")}
       labelStyle={{ color: "#6750a4", fontSize: 21, textAlign: "left" }}
       contentStyle={{ height: 50 }}
       mode="contained-tonal"
@@ -38,7 +38,7 @@ export default function FormaFarmaceutica() {
         <FlatList
           data={values}
           renderItem={renderItem}
-          keyExtractor={(item) => item.id}
+          keyExtractor={(index, _) => index}
           contentContainerStyle={{ gap: 30 }}
           className="mt-4"
         />

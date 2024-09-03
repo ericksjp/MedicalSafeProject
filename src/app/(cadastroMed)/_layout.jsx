@@ -18,6 +18,12 @@ export default function CadastroLayout() {
             headerShown: false,
           }}
         />
+        <Stack.Screen
+          name="frequenciaDias"
+          options={{
+            headerShown: false,
+          }}
+        />
       </Stack>
       <StatusBar backgroundColor="#6750a4" />
     </MedProvider>
