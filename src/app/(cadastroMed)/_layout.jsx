@@ -1,14 +1,19 @@
 import { Stack } from "expo-router";
+import { StatusBar } from "expo-status-bar";
+import MedProvider from "../../context/MedProvider";
 
 export default function CadastroLayout() {
   return (
-    <Stack>
-      <Stack.Screen
-        name="nomeMedicamento"
-        options={{
-          headerShown: false,
-        }}
-      />
-    </Stack>
+    <MedProvider>
+      <Stack>
+        <Stack.Screen
+          name="nomeMedicamento"
+          options={{
+            headerShown: false,
+          }}
+        />
+      </Stack>
+      <StatusBar backgroundColor="#6750a4" />
+    </MedProvider>
   );
 }

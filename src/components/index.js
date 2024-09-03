@@ -6,8 +6,10 @@ import HomeAppBar from "./HomeBar";
 import MedReminder from "./MedReminder";
 import MyModal from "./MyModal";
 import FabThing from "./FabThing";
+import NewMedBar from "./NewMedBar";
 
 export {
+  NewMedBar,
   FabThing,
   MyModal,
   FormField,

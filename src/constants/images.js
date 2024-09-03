@@ -1,3 +1,3 @@
-import logo from "../../assets/images/medicine.png";
+import logo from "../../assets/images/logo.png";
 
 export default { logo };
