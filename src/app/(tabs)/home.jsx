@@ -1,11 +1,11 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState, memo } from "react";
 import { View, StyleSheet, FlatList } from "react-native";
 import { Divider } from "react-native-paper";
-import { Calendar, HomeAppBar, MedReminder } from "../../components";
+import { Calendar, FabThing, HomeAppBar, MedReminder } from "../../components";
 import { allRemedios } from "../../mock";
 import { formatDate } from "../../utils";
 
-const MemoizedMedReminder = React.memo(MedReminder);
+const MemoizedMedReminder = memo(MedReminder);
 
 const Home = () => {
   const [selectedDate, setSelectedDate] = useState("");
@@ -49,6 +49,8 @@ const Home = () => {
         initialNumToRender={10}
         maxToRenderPerBatch={10}
       />
+
+      <FabThing />
     </View>
   );
 };

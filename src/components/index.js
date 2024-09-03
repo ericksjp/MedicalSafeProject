@@ -5,8 +5,10 @@ import Calendar from "./Calendar";
 import HomeAppBar from "./HomeBar";
 import MedReminder from "./MedReminder";
 import MyModal from "./Modal";
+import FabThing from "./FabThing";
 
 export {
+  FabThing,
   MyModal,
   FormField,
   AuthAppBar,
