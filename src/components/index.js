@@ -7,8 +7,10 @@ import MedReminder from "./MedReminder";
 import MyModal from "./MyModal";
 import FabThing from "./FabThing";
 import NewMedBar from "./NewMedBar";
+import CancelModal from "./CancelModal";
 
 export {
+  CancelModal,
   NewMedBar,
   FabThing,
   MyModal,

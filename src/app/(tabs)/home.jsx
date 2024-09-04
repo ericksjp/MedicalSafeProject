@@ -4,6 +4,7 @@ import { Divider } from "react-native-paper";
 import { Calendar, FabThing, HomeAppBar, MedReminder } from "../../components";
 import { allRemedios } from "../../mock";
 import { formatDate } from "../../utils";
+import { useRouter } from "expo-router";
 
 const MemoizedMedReminder = memo(MedReminder);
 

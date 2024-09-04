@@ -5,10 +5,17 @@ import { NewMedBar } from "../../components";
 import { icons } from "../../constants";
 import { IconButton, Button } from "react-native-paper";
 import { router } from "expo-router";
+import { useMedContext } from "../../context/MedProvider";
 
 const PrimeiraDose = () => {
+  const { setMedData } = useMedContext();
   const [date, setDate] = useState(new Date());
   const [show, setShow] = useState(false);
+
+  function handleNext() {
+    setMedData((prev) => ({ ...prev, primeiraDose: date }));
+    router.push("/frequenciaDoseDiaria");
+  }
 
   const onChange = (_, selectedDate) => {
     const currentDate = selectedDate || date;
@@ -55,10 +62,7 @@ const PrimeiraDose = () => {
           icon="arrow-right-bold"
           iconColor={"#6750a4"}
           size={50}
-          onPress={() => {
-            console.log("here");
-            router.push("/frequenciaDoseDiaria");
-          }}
+          onPress={handleNext}
           style={{ alignSelf: "flex-end" }}
         />
       </View>

@@ -1,6 +1,7 @@
 import { Text, View, Image } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Button } from "react-native-paper";
+import { router } from "expo-router";
 
 export default function NewMedBar({
   iconBackBtn,
@@ -9,6 +10,15 @@ export default function NewMedBar({
   onNextStep,
   onBackStep,
 }) {
+  function onBack() {
+    console.log("erick");
+    if (onBackStep) {
+      onBackStep();
+    } else {
+      router.back();
+    }
+  }
+
   return (
     <SafeAreaView>
       <View className="w-full flex gap-3 justify-center items-center bg-[#6750a4] pb-10">
@@ -16,7 +26,7 @@ export default function NewMedBar({
           icon={iconBackBtn}
           mode="text"
           textColor="white"
-          onPress={() => console.log("pressed")}
+          onPress={onBack}
           className="self-start font-bold"
           labelStyle={{ fontWeight: "bolda", fontSize: 25 }}
           title={title}

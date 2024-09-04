@@ -4,6 +4,7 @@ import { Button } from "react-native-paper";
 import { router } from "expo-router";
 
 import { icons } from "../../constants";
+import { useMedContext } from "../../context/MedProvider";
 
 const values = [
   "Comprimido",
@@ -15,9 +16,16 @@ const values = [
 ];
 
 export default function FormaFarmaceutica() {
+  const { setMedData } = useMedContext();
+
+  function handlePress(item) {
+    setMedData((prev) => ({ ...prev, forma: item }));
+    router.push("/frequenciaDias");
+  }
+
   const renderItem = ({ item }) => (
     <Button
-      onPress={() => router.push("/frequenciaDias")}
+      onPress={() => handlePress(item)}
       labelStyle={{ color: "#6750a4", fontSize: 21, textAlign: "left" }}
       contentStyle={{ height: 50 }}
       mode="contained-tonal"

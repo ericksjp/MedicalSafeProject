@@ -1,19 +1,18 @@
-import React, { useState } from "react";
-import {
-  View,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-} from "react-native";
+import { useState } from "react";
+import { View, ScrollView, Text, TouchableOpacity } from "react-native";
 import { TextInput, Button, Divider } from "react-native-paper";
 import NewMedBar from "../../components/NewMedBar";
 import { icons } from "../../constants";
 import DateTimePicker from "@react-native-community/datetimepicker";
+import { useMedContext } from "../../context/MedProvider";
+import SuccessModal from "../../components/SucessModal";
+import { router } from "expo-router";
 
 export default function FrequenciaDoseDiaria() {
+  const { setMedData, registerMed } = useMedContext();
   const [fields, setFields] = useState([{ time: new Date(), dose: "1" }]);
   const [showPickerIndex, setShowPickerIndex] = useState(null);
+  const [showModal, setShowModal] = useState(false);
 
   const onTimeChange = (fieldIndex, _, selectedTime) => {
     setShowPickerIndex(null);
@@ -36,7 +35,6 @@ export default function FrequenciaDoseDiaria() {
   };
 
   function handleBlur(index, value) {
-    console.log(value);
     if (value === "") {
       const updatedFields = [...fields];
       updatedFields[index]["dose"] = "1";
@@ -59,6 +57,12 @@ export default function FrequenciaDoseDiaria() {
 
   function removeNonNumeric(str) {
     return str.replace(/\D/g, "");
+  }
+
+  function handleRegistro() {
+    setMedData((prev) => ({ ...prev, horarios: fields }));
+    registerMed();
+    setShowModal(true);
   }
 
   return (
@@ -157,6 +161,7 @@ export default function FrequenciaDoseDiaria() {
           mode="contained-tonal"
           icon="content-save-check"
           buttonColor="#4ade80"
+          onPress={handleRegistro}
           style={{
             width: 300,
           }}
@@ -167,6 +172,10 @@ export default function FrequenciaDoseDiaria() {
           Registrar medicamento
         </Button>
       </ScrollView>
+      <SuccessModal
+        visible={showModal}
+        onAll={() => router.navigate("/home")}
+      />
     </View>
   );
 }

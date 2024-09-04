@@ -5,8 +5,10 @@ import { router } from "expo-router";
 import { useState } from "react";
 
 import { icons } from "../../constants";
+import { useMedContext } from "../../context/MedProvider";
 
 export default function FrequenciaDias() {
+  const { setMedData } = useMedContext();
   const [days, setDays] = useState([
     false,
     false,
@@ -16,7 +18,7 @@ export default function FrequenciaDias() {
     false,
     false,
   ]);
-  const [showDays, setShowDays] = useState(true);
+  const [showDays, setShowDays] = useState(false);
 
   const handleDay = (index) => {
     const newDays = [...days];
@@ -25,7 +27,14 @@ export default function FrequenciaDias() {
   };
 
   const handleALlDays = () => {
-    setDays([true, true, true, true, true, true, true]);
+    const allDays = [true, true, true, true, true, true, true];
+    setDays(allDays);
+    setMedData((prev) => ({ ...prev, frequenciaDias: allDays }));
+    router.push("/primeiraDose");
+  };
+
+  const handleNext = () => {
+    setMedData((prev) => ({ ...prev, frequenciaDias: days }));
     router.push("/primeiraDose");
   };
 
@@ -88,7 +97,7 @@ export default function FrequenciaDias() {
               icon="arrow-right-bold"
               iconColor={"#6750a4"}
               size={50}
-              onPress={() => router.push("/primeiraDose")}
+              onPress={handleNext}
               disabled={days.every((day) => !day)}
               style={{ alignSelf: "flex-end" }}
             />
