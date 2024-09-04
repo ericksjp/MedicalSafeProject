@@ -6,7 +6,7 @@ import { icons } from "../../constants";
 import { IconButton, Button } from "react-native-paper";
 import { router } from "expo-router";
 
-const CustomDateTimePicker = () => {
+const PrimeiraDose = () => {
   const [date, setDate] = useState(new Date());
   const [show, setShow] = useState(false);
 
@@ -55,7 +55,10 @@ const CustomDateTimePicker = () => {
           icon="arrow-right-bold"
           iconColor={"#6750a4"}
           size={50}
-          onPress={() => router.push("/primeiraDose")}
+          onPress={() => {
+            console.log("here");
+            router.push("/frequenciaDoseDiaria");
+          }}
           style={{ alignSelf: "flex-end" }}
         />
       </View>
@@ -63,4 +66,4 @@ const CustomDateTimePicker = () => {
   );
 };
 
-export default CustomDateTimePicker;
+export default PrimeiraDose;
