@@ -1,10 +1,35 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 import { Divider } from "react-native-paper";
 import MyModal from "./MyModal";
 
-const MedReminder = ({ time, medication, dosage, onDelete, status }) => {
+const MedReminder = ({ time, medication, dosage, onDelete, initialStatus }) => {
   const [deleteModalVisible, setDeleteModalVisible] = useState(false);
+  const [status, setStatus] = useState(initialStatus);
+
+  const processMedicationStatus = () => {
+    const now = new Date();
+    const medicationTime = new Date();
+
+    const [hours, minutes] = time.split(":").map(Number);
+    medicationTime.setHours(hours, minutes, 0, 0);
+
+    if (now > medicationTime && !status) {
+      setStatus(false);
+    } else if (status) {
+      setStatus(true);
+    }
+  };
+
+  useEffect(() => {
+    processMedicationStatus();
+
+    const intervalId = setInterval(() => {
+      processMedicationStatus();
+    }, 60000);
+
+    return () => clearInterval(intervalId);
+  }, [time, status]);
 
   const showDeleteModal = () => setDeleteModalVisible(true);
   const hideDeleteModal = () => setDeleteModalVisible(false);
@@ -46,7 +71,7 @@ const MedReminder = ({ time, medication, dosage, onDelete, status }) => {
         onDismiss={hideDeleteModal}
         onConfirm={handleDelete}
         title="Confirmar Deleção"
-        message="Tem certeza que deseja deletar este medicamento ?"
+        message="Tem certeza que deseja deletar este medicamento?"
         nomeRemedio={medication}
         status={status}
         dosage={dosage}

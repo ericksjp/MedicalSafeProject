@@ -10,6 +10,7 @@ const MedProvider = ({ children }) => {
     frequenciaDias: [],
     horarios: [],
     primeiraDose: undefined,
+    ultimaDose: undefined,
   });
 
   function setInitialState() {
@@ -19,11 +20,8 @@ const MedProvider = ({ children }) => {
       frequenciaDias: [],
       horarios: [],
       primeiraDose: undefined,
+      ultimaDose: undefined,
     });
-  }
-
-  function registerMed() {
-    console.log(medData);
   }
 
   return (
