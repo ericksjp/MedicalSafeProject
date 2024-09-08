@@ -9,6 +9,7 @@ import {
 import { Button } from "react-native-paper";
 import { getDates } from "../utils";
 
+/* Item a ser renderizado na flatlist */
 const Item = ({ dayName, dateNumber, isSelected, onPress, isToday }) => (
   <Pressable onPress={onPress}>
     <View className="items-center w-[50px]">
@@ -30,14 +31,18 @@ const Item = ({ dayName, dateNumber, isSelected, onPress, isToday }) => (
   </Pressable>
 );
 
+
+/**
+ * Componente Calendário
+ * Este é um componente de Calendário que exibe uma lista rolável de datas.
+*/
 const Calendar = ({ span, handleSetSelectedDay }) => {
   const dates = useMemo(() => getDates(new Date(), span), []);
-
   const [selectedIndex, setSelectedIndex] = useState(span);
   const flatListRef = useRef(null);
 
   const handleItemPress = (index) => {
-    handleSetSelectedDay(dates[index].dateStrKey);
+    handleSetSelectedDay(dates[index].date);
     setSelectedIndex(index);
     flatListRef.current.scrollToIndex({
       index,
@@ -46,76 +51,57 @@ const Calendar = ({ span, handleSetSelectedDay }) => {
     });
   };
 
-  const handleLeftPress = () => {
-    flatListRef.current.scrollToIndex({
-      index: Math.max(
-        0,
-        flatListRef.current.props.data.indexOf(
-          flatListRef.current.props.data[0]
-        ) - 7
-      ),
-      animated: true,
-      viewPosition: 0.5,
-    });
-  };
+  function getItemLayout(_, index) {
+    return {
+      length: 50,
+      offset: 50 * index,
+      index,
+    };
+  }
 
-  const handleRightPress = () => {
-    flatListRef.current.scrollToIndex({
-      index: Math.min(
-        dates.length - 1,
-        flatListRef.current.props.data.indexOf(
-          flatListRef.current.props.data[0]
-        ) + 7
-      ),
-      animated: true,
-      viewPosition: 0.5,
-    });
-  };
+  function renderItem({ item, index }) {
+    return (
+      <Item
+        dayName={item.dayName}
+        dateNumber={item.day}
+        isSelected={index === selectedIndex}
+        isToday={index === span}
+        onPress={() => handleItemPress(index)}
+      />
+    );
+  }
 
   useEffect(() => {
     flatListRef.current.scrollToIndex({
       index: span - 3,
       animated: true,
-      // viewPosition: 0.5,
     });
   }, []);
-
-  const getItemLayout = (_, index) => ({
-    length: 50,
-    offset: 50 * index,
-    index,
-  });
 
   return (
     <View className="bg-[#6750a4] p-4 gap-2">
       <View className="w-full flex flex-row items-center gap-2">
-        <TouchableOpacity onPress={handleLeftPress}>
+        <TouchableOpacity>
           <Text className="text-white">{"<"}</Text>
         </TouchableOpacity>
+
         <FlatList
-          className="self-center w-[90%]"
+          className="self-center w-full"
           ref={flatListRef}
           data={dates}
           horizontal
-          renderItem={({ item, index }) => (
-            <Item
-              dayName={item.dayName}
-              dateNumber={item.day}
-              isSelected={index === selectedIndex}
-              isToday={index === span}
-              onPress={() => handleItemPress(index)}
-            />
-          )}
+          renderItem={renderItem}
           keyExtractor={(_, index) => index.toString()}
           contentContainerStyle={{
             flexDirection: "row",
             justifyContent: "start",
           }}
           showsHorizontalScrollIndicator={false}
-          initialNumToRender={14}
+          initialNumToRender={7}
           getItemLayout={getItemLayout}
         />
-        <TouchableOpacity onPress={handleRightPress}>
+
+        <TouchableOpacity >
           <Text className="text-white">{">"}</Text>
         </TouchableOpacity>
       </View>

@@ -2,10 +2,15 @@ import { Stack, SplashScreen } from "expo-router";
 import "../styles/global.css";
 import { useFonts } from "expo-font";
 import { useEffect } from "react";
+import { PaperProvider } from "react-native-paper";
+import DataProvider from "../context/DataProvider";
 
+/* impede que a tela de splash seja fechada automaticamente */
 SplashScreen.preventAutoHideAsync();
 
+// define um layout padrão para a aplicação
 export default function RootLayout() {
+  // carrrega as fontes necessárias para a aplicação
   const [fontsLoaded, error] = useFonts({
     "Poppins-Black": require("../../assets/fonts/Poppins-Black.ttf"),
     "Poppins-Bold": require("../../assets/fonts/Poppins-Bold.ttf"),
@@ -18,6 +23,7 @@ export default function RootLayout() {
     "Poppins-Thin": require("../../assets/fonts/Poppins-Thin.ttf"),
   });
 
+  // exibe a tela de splash até que as fontes sejam carregadas
   useEffect(() => {
     if (error) throw error;
 
@@ -26,18 +32,26 @@ export default function RootLayout() {
     }
   }, [fontsLoaded, error]);
 
-  if (!fontsLoaded) {
-    return null;
-  }
-
+  // exibe a tela de splash até que as fontes sejam carregadas
   if (!fontsLoaded && !error) {
     return null;
   }
+
+  /*
+    Define a estrutura de navegação da aplicação.
+    Passa o provider de contexto para que todos os componentes tenham acesso aos dados.
+    Passa o provider de tema para que todos os componentes tenham acesso ao tema.
+  */
   return (
-    <Stack>
-      <Stack.Screen name="index" options={{ headerShown: false }} />
-      <Stack.Screen name="(auth)" options={{ headerShown: false }} />
-      <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-    </Stack>
+    <DataProvider>
+      <PaperProvider>
+        <Stack>
+          <Stack.Screen name="index" options={{ headerShown: false }} />
+          <Stack.Screen name="(auth)" options={{ headerShown: false }} />
+          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+          <Stack.Screen name="(cadastroMed)" options={{ headerShown: false }} />
+        </Stack>
+      </PaperProvider>
+    </DataProvider>
   );
 }
