@@ -1,12 +1,6 @@
-import { Redirect, Stack } from "expo-router";
-import { StatusBar } from "react-native";
+import { Stack } from "expo-router";
 
 const AuthLayout = () => {
-  const loading = false;
-  const isLogged = true;
-
-  // if (!loading && isLogged) return <Redirect href="/home" />;
-
   return (
     <>
       <Stack>
@@ -23,7 +17,6 @@ const AuthLayout = () => {
           }}
         />
       </Stack>
-      {/* <StatusBar backgroundColor="#161622" style="dark" /> */}
     </>
   );
 };

@@ -1,43 +1,30 @@
-import { useState, useEffect } from "react";
-import { View, Text, TouchableOpacity } from "react-native";
 import { Divider } from "react-native-paper";
+import { useDataContext } from "../context/DataProvider";
+import { formatHora, getStatusTextAndColor } from "../utils";
 import MyModal from "./MyModal";
 
-const MedReminder = ({ time, medication, dosage, onDelete, initialStatus }) => {
+const MedReminder = ({ name, forma, dose, status, hora, dia }) => {
   const [deleteModalVisible, setDeleteModalVisible] = useState(false);
-  const [status, setStatus] = useState(initialStatus);
+  const { deletarMedicamento, atualizarEstado } = useDataContext();
 
-  const processMedicationStatus = () => {
-    const now = new Date();
-    const medicationTime = new Date();
+  const showDeleteModal = useCallback(() => setDeleteModalVisible(true), []);
+  const hideDeleteModal = useCallback(() => setDeleteModalVisible(false), []);
 
-    const [hours, minutes] = time.split(":").map(Number);
-    medicationTime.setHours(hours, minutes, 0, 0);
+  const handleChangeStatus = useCallback(
+    (status) => {
+      atualizarEstado(dia, hora, status);
+      hideDeleteModal();
+    },
+    [dia, hora]
+  );
 
-    if (now > medicationTime && !status) {
-      setStatus(false);
-    } else if (status) {
-      setStatus(true);
-    }
-  };
-
-  useEffect(() => {
-    processMedicationStatus();
-
-    const intervalId = setInterval(() => {
-      processMedicationStatus();
-    }, 60000);
-
-    return () => clearInterval(intervalId);
-  }, [time, status]);
-
-  const showDeleteModal = () => setDeleteModalVisible(true);
-  const hideDeleteModal = () => setDeleteModalVisible(false);
-
-  const handleDelete = () => {
-    onDelete();
+  const handleDelete = useCallback(() => {
+    deletarMedicamento(name);
     hideDeleteModal();
-  };
+  }, [name]);
+
+  const { text: statusText, color: statusColor } =
+    getStatusTextAndColor(status);
 
   return (
     <View className="w-10/12 self-center">
@@ -46,39 +33,33 @@ const MedReminder = ({ time, medication, dosage, onDelete, initialStatus }) => {
         onPress={showDeleteModal}
       >
         <View className="flex flex-row justify-between">
-          <Text className="text-slate-700 text-2xl">{time}</Text>
-          <Text
-            className={`text-xl ${status ? "text-green-400" : "text-red-400"}`}
-          >
-            {status ? "Tomado" : "Esquecido"}
-          </Text>
+          <Text className="text-slate-700 text-2xl">{formatHora(hora)}</Text>
+          <Text className={`text-xl ${statusColor}`}>{statusText}</Text>
         </View>
         <Divider bold />
-
         <View className="flex flex-row justify-between w-full">
           <View className="flex gap-1 ml-2">
-            <Text className="font-bold text-2xl text-[#6750a4]">
-              {medication}
-            </Text>
+            <Text className="font-bold text-2xl text-[#6750a4]">{name}</Text>
             <Text className="text-slate-700 text-xl italic">
-              Tomar {dosage}
+              Tomar {dose} {forma}
             </Text>
           </View>
         </View>
       </TouchableOpacity>
       <MyModal
         visible={deleteModalVisible}
+        onDelete={handleDelete}
         onDismiss={hideDeleteModal}
-        onConfirm={handleDelete}
+        onChangeStatus={handleChangeStatus}
         title="Confirmar Deleção"
         message="Tem certeza que deseja deletar este medicamento?"
-        nomeRemedio={medication}
+        nomeRemedio={name}
         status={status}
-        dosage={dosage}
-        time={time}
+        dose={dose}
+        hora={hora}
       />
     </View>
   );
 };
 
-export default MedReminder;
+export default memo(MedReminder);

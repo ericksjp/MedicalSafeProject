@@ -17,8 +17,8 @@ const Login = () => {
 
   return (
     <View className="w-[100%] h-[100%] bg-[#6750a4]">
-      <AuthAppBar title="Piulula - Login" />
-      <View className="px-8 gap-4 rounded-3xl z-auto h-full bg-white">
+      <AuthAppBar title="PillTake - Login" />
+      <View className="px-8 gap-4 rounded-3xl z-auto h-full bg-white pt-5">
         <FormField
           type={1}
           label="Email"
@@ -41,15 +41,23 @@ const Login = () => {
           title="Entrar"
           handlePress={handleSignIn}
           className="mt-10"
+          disabled={true}
         />
         <Text className="text-center text-gray-600 font-bold text-xl">Ou</Text>
 
-        <CustomButton
-          title="Cadastre-se"
-          handlePress={() => router.replace("/signup")}
-          className="mt-8"
-          mode="outlined"
-        />
+        <View className="flex flex-col justify-center gap-3">
+          <CustomButton
+            title="Cadastre-se"
+            handlePress={() => router.replace("/signup")}
+            className="mt-8"
+            mode="contained"
+          />
+          <CustomButton
+            title="Entrar como convidado"
+            handlePress={() => router.replace("/home")}
+            mode="elevated"
+          />
+        </View>
       </View>
     </View>
   );

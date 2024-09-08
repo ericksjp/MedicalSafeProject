@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet } from "react-native";
 import { Button, Modal, Portal, Text } from "react-native-paper";
 
-const SuccessModal = ({ visible, onAll }) => {
+export default function SuccessModal({ visible, onAll }) {
   return (
     <Portal>
       <Modal
@@ -19,7 +19,7 @@ const SuccessModal = ({ visible, onAll }) => {
       </Modal>
     </Portal>
   );
-};
+}
 
 const styles = StyleSheet.create({
   modalContainer: {
@@ -33,5 +33,3 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
 });
-
-export default SuccessModal;

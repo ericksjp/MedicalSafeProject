@@ -1,11 +1,11 @@
 import { View, Text, Image } from "react-native";
 import React from "react";
-import { useRouter } from "expo-router";
+import { router } from "expo-router";
 import { Button } from "react-native-paper";
 import images from "../constants/images";
 
+// pagina inicial
 const Index = () => {
-  const router = useRouter();
   return (
     <View className="flex-1 justify-center items-center">
       <Image source={images.biggerLogo} className="size-60 mb-5" />

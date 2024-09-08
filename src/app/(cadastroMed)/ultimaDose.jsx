@@ -8,15 +8,15 @@ import { router } from "expo-router";
 import { useDataContext } from "../../context/DataProvider";
 
 /* Tela para registrar a data da primeira dose do medicamento a ser cadastrado */
-const PrimeiraDose = () => {
-  const { setNovoMedicamento } = useDataContext();
-  const [date, setDate] = useState(new Date());
+const UltimaDose = () => {
+  const { setNovoMedicamento, novoMedicamento } = useDataContext();
+  const [date, setDate] = useState(new Date(novoMedicamento?.primeiraDose) || new Date());
   const [show, setShow] = useState(false);
 
   function handleNext() {
     // guarda a data em timestamp
-    setNovoMedicamento((prev) => ({ ...prev, primeiraDose: date.getTime() }));
-    router.push("/ultimaDose");
+    setNovoMedicamento((prev) => ({ ...prev, ultimaDose: date.getTime() }));
+    router.push("/frequenciaDoseDiaria");
   }
 
   const onChange = (_, selectedDate) => {
@@ -29,7 +29,7 @@ const PrimeiraDose = () => {
     <View className="h-full w-full bg-white">
       <NewMedBar
         iconBackBtn="arrow-left-bold"
-        title="Quando você precisa tomar a próxima dose ?"
+        title="Quando você precisa tomar a ultima dose ?"
         icon={icons.medicine}
       />
 
@@ -53,11 +53,11 @@ const PrimeiraDose = () => {
         </Button>
         {show && (
           <DateTimePicker
+            testID="dateTimePicker"
             value={date}
+            // mode={mode}
             display="spinner"
             onChange={onChange}
-            timeZoneName="BR"
-            mode="date"
             minimumDate={date}
           />
         )}
@@ -73,4 +73,4 @@ const PrimeiraDose = () => {
   );
 };
 
-export default PrimeiraDose;
+export default UltimaDose;

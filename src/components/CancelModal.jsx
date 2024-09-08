@@ -1,7 +1,7 @@
 import { Text, View } from "react-native";
 import { Button, Modal, Portal } from "react-native-paper";
 
-export default CancelModal = ({ visible, onDismiss, onConfirm }) => {
+export default function CancelModal({ visible, onDismiss, onConfirm }) {
   return (
     <Portal>
       <Modal
@@ -48,4 +48,4 @@ export default CancelModal = ({ visible, onDismiss, onConfirm }) => {
       </Modal>
     </Portal>
   );
-};
+}

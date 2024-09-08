@@ -1,3 +1,4 @@
+// dados mockados para testes
 const user = {
   name: "John Doe",
   email: "doe@mail",
