@@ -9,8 +9,9 @@ const MyModal = ({
   onDelete,
   nomeRemedio,
   status,
-  dosage,
+  dose,
   hora,
+  forma,
 }) => {
   const { text: statusText, color: statusColor } =
     getStatusTextAndColor(status);
@@ -45,7 +46,9 @@ const MyModal = ({
           </View>
           <View className="flex flex-row gap-o items-center self-start ml-4">
             <Icon source="archive-outline" size={20} />
-            <Text className="self-start text-lg">{dosage}</Text>
+            <Text className="self-start text-lg ml-1">
+              {dose} {forma}
+            </Text>
           </View>
         </View>
 

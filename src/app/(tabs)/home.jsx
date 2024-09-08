@@ -8,7 +8,6 @@ import { useFocusEffect } from "@react-navigation/native";
 
 const MemoizedMedReminder = memo(MedReminder);
 
-// pagina principal
 const Home = () => {
   const { medicamentos } = useDataContext();
   const [selectedDate, setSelectedDate] = useState(new Date());

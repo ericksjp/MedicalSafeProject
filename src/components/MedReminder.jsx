@@ -2,6 +2,8 @@ import { Divider } from "react-native-paper";
 import { useDataContext } from "../context/DataProvider";
 import { formatHora, getStatusTextAndColor } from "../utils";
 import MyModal from "./MyModal";
+import { memo, useState, useCallback } from "react";
+import { View, Text, TouchableOpacity } from "react-native";
 
 const MedReminder = ({ name, forma, dose, status, hora, dia }) => {
   const [deleteModalVisible, setDeleteModalVisible] = useState(false);
@@ -57,6 +59,7 @@ const MedReminder = ({ name, forma, dose, status, hora, dia }) => {
         status={status}
         dose={dose}
         hora={hora}
+        forma={forma}
       />
     </View>
   );

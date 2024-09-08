@@ -44,6 +44,7 @@ function DataProvider({ children }) {
 
   function registrarMedicamento(medicamento = novoMedicamento) {
     const newMap = generateMedMap(medicamento, medicamentos);
+    console.log(newMap);
     setMedicamentos(newMap);
   }
 
