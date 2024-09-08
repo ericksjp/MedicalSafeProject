@@ -1,49 +1,36 @@
-import { View } from "react-native";
-import { NewMedBar } from "../../components";
-import { Button, Chip, IconButton, Text } from "react-native-paper";
 import { router } from "expo-router";
 import { useState } from "react";
-
+import { View } from "react-native";
+import { Button, Chip, IconButton, Text } from "react-native-paper";
+import { NewMedBar } from "../../components";
 import { icons } from "../../constants";
-import { useMedContext } from "../../context/MedProvider";
+import { useDataContext } from "../../context/DataProvider";
 
+/* Tela para registrar a frequencia de dias que o medicamento deve ser tomado */
 export default function FrequenciaDias() {
-  const { setMedData } = useMedContext();
-  const [days, setDays] = useState([
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-  ]);
+  const { setNovoMedicamento } = useDataContext();
+  const [days, setDays] = useState([0, 0, 0, 0, 0, 0, 0]);
   const [showDays, setShowDays] = useState(false);
 
   const handleDay = (index) => {
     const newDays = [...days];
-    newDays[index] = !newDays[index];
+    newDays[index] = newDays[index] === 1 ? 0 : 1;
     setDays(newDays);
   };
 
   const handleALlDays = () => {
-    const allDays = [true, true, true, true, true, true, true];
-    setDays(allDays);
-    setMedData((prev) => ({ ...prev, frequenciaDias: allDays }));
+    const allDays = [1, 1, 1, 1, 1, 1, 1];
+    setNovoMedicamento((prev) => ({ ...prev, frequenciaDias: allDays }));
     router.push("/primeiraDose");
   };
 
-  const handleNext = () => {
-    setMedData((prev) => ({ ...prev, frequenciaDias: days }));
-    router.push("/primeiraDose");
-  };
-
+  // funcao para renderizar os chips de dias
   const renderChip = (index, day) => (
     <Chip
       key={index}
-      icon={days[index] ? "check" : "close"}
+      icon={days[index] === 1 ? "check" : "close"}
       style={{
-        backgroundColor: days[index] ? "#cfa4ed" : "#edddf6",
+        backgroundColor: days[index] === 1 ? "#cfa4ed" : "#edddf6",
         marginBottom: 20,
         marginRight: 10,
       }}
@@ -53,6 +40,11 @@ export default function FrequenciaDias() {
       {day}
     </Chip>
   );
+
+  const handleNext = () => {
+    setNovoMedicamento((prev) => ({ ...prev, frequenciaDias: days }));
+    router.push("/primeiraDose");
+  };
 
   return (
     <View className="bg-white w-full h-full">
@@ -98,7 +90,7 @@ export default function FrequenciaDias() {
               iconColor={"#6750a4"}
               size={50}
               onPress={handleNext}
-              disabled={days.every((day) => !day)}
+              disabled={days.every((day) => day === 0)}
               style={{ alignSelf: "flex-end" }}
             />
           </View>

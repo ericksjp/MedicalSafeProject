@@ -1,70 +1,98 @@
-import { useCallback, useEffect, useMemo, useState, memo } from "react";
-import { View, StyleSheet, FlatList } from "react-native";
+import { useCallback, useEffect, useState, memo } from "react";
+import { View, StyleSheet, FlatList, Text } from "react-native";
 import { Divider } from "react-native-paper";
 import { Calendar, FabThing, HomeAppBar, MedReminder } from "../../components";
-import { allRemedios } from "../../mock";
 import { formatDate } from "../../utils";
-import { useRouter } from "expo-router";
+import { useDataContext } from "../../context/DataProvider";
+import { useFocusEffect } from "@react-navigation/native";
 
 const MemoizedMedReminder = memo(MedReminder);
 
+// pagina principal
 const Home = () => {
-  const [selectedDate, setSelectedDate] = useState("");
-  const remedios = useMemo(() => allRemedios.get(selectedDate), [selectedDate]);
+  const { medicamentos } = useDataContext();
+  const [selectedDate, setSelectedDate] = useState(new Date());
+  const [remedios, setRemedios] = useState([]);
+  const [showFab, setShowFab] = useState(true);
 
   useEffect(() => {
-    const today = formatDate(new Date());
-    setSelectedDate(today);
-  }, []);
+    setRemedios(medicamentos.get(formatDate(selectedDate)) || []);
+  }, [selectedDate, medicamentos]);
+
+  useFocusEffect(
+    useCallback(() => {
+      setShowFab(true);
+      setSelectedDate(new Date());
+      return () => setShowFab(false);
+    }, [])
+  );
 
   const renderItem = useCallback(
     ({ item }) => (
       <MemoizedMedReminder
-        medication={item.medication}
-        time={item.time}
-        dosage={item.dosage}
+        name={item.name}
+        forma={item.forma}
+        dose={item.dose}
+        status={item.status}
+        hora={item.hora}
+        dia={item.dia}
       />
     ),
     []
   );
 
   return (
-    <View className="w-full h-full">
-      <HomeAppBar title="Zezin Goiaba" />
+    <View style={styles.container}>
+      <HomeAppBar title="Convidado" className="bg-slate-200" />
       <Divider bold />
       <Calendar span={7} handleSetSelectedDay={setSelectedDate} />
-      <FlatList
-        data={remedios}
-        keyExtractor={(_, index) => index.toString()}
-        scrollEnabled={true}
-        vertical
-        renderItem={renderItem}
-        contentContainerStyle={{
-          display: "flex",
-          width: "100%",
-          gap: 25,
-        }}
-        style={styles.flatList}
-        showsVerticalScrollIndicator={true}
-        removeClippedSubviews={true}
-        initialNumToRender={10}
-        maxToRenderPerBatch={10}
-      />
 
-      <FabThing />
+      {remedios.length === 0 ? (
+        <View style={styles.noMedsMessage}>
+          <Text style={styles.noMedsText}>Não há medicamentos para hoje</Text>
+        </View>
+      ) : (
+        <FlatList
+          data={remedios}
+          keyExtractor={(_, index) => index.toString()}
+          renderItem={renderItem}
+          contentContainerStyle={styles.flatListContent}
+          style={styles.flatList}
+          showsVerticalScrollIndicator={true}
+          removeClippedSubviews={true}
+          initialNumToRender={10}
+          maxToRenderPerBatch={10}
+        />
+      )}
+
+      <FabThing visible={showFab} setVisible={setShowFab} />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    paddingHorizontal: 16,
-    backgroundColor: "#ffffff",
-    height: 300,
+    flex: 1,
+    // backgroundColor: "#f",
+  },
+  noMedsMessage: {
+    marginTop: 40,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  noMedsText: {
+    color: "#6B7280",
+    fontSize: 24,
+    textAlign: "center",
   },
   flatList: {
     marginTop: 20,
     marginBottom: 20,
+  },
+  flatListContent: {
+    display: "flex",
+    width: "100%",
+    gap: 25,
   },
 });
 

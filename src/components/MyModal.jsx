@@ -1,15 +1,20 @@
 import { Text, View } from "react-native";
 import { Button, Icon, IconButton, Modal, Portal } from "react-native-paper";
+import { formatDate, getStatusTextAndColor } from "../utils";
 
 const MyModal = ({
   visible,
   onDismiss,
-  onConfirm,
+  onChangeStatus,
+  onDelete,
   nomeRemedio,
   status,
   dosage,
-  time,
+  hora,
 }) => {
+  const { text: statusText, color: statusColor } =
+    getStatusTextAndColor(status);
+
   return (
     <Portal>
       <Modal
@@ -25,22 +30,18 @@ const MyModal = ({
         }}
       >
         <View className="w-full h-12 flex-row justify-start items-center gap-2 rounded-t-3xl">
-          <IconButton icon="trash-can" size={30} />
+          <IconButton icon="trash-can" size={30} onPress={onDelete} />
         </View>
 
         <View className="bg-gray-200 flex w-full items-center">
           <Text className="text-3xl font-semibold">{nomeRemedio}</Text>
-          <Text
-            className={`text-xl mt-1 ${
-              status ? "text-green-400" : "text-red-400"
-            }`}
-          >
-            {status ? "Tomado" : "Esquecido"}
-          </Text>
+          <Text className={`text-xl mt-1 ${statusColor}`}>{statusText}</Text>
 
           <View className="flex flex-row items-center gap-2 mt-4 self-start ml-4">
             <Icon source="clock" size={20} />
-            <Text className="self-start text-lg">Agendado para {time}</Text>
+            <Text className="self-start text-lg">
+              Agendado para {formatDate(hora)}
+            </Text>
           </View>
           <View className="flex flex-row gap-o items-center self-start ml-4">
             <Icon source="archive-outline" size={20} />
@@ -51,7 +52,7 @@ const MyModal = ({
         <View className="flex flex-row justify-evenly w-full mt-6 bg-gray-200 rounded-b-3xl">
           <Button
             mode="contained"
-            onPress={onDismiss}
+            onPress={() => onChangeStatus(0)}
             icon="close"
             style={{ backgroundColor: "#f87171" }}
           >
@@ -59,7 +60,7 @@ const MyModal = ({
           </Button>
           <Button
             mode="contained"
-            onPress={onConfirm}
+            onPress={() => onChangeStatus(1)}
             style={{
               backgroundColor: "#4ade80",
             }}

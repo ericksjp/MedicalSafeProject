@@ -5,7 +5,7 @@ import { BlurView } from "expo-blur";
 import { Dimensions } from "react-native";
 import { useRouter } from "expo-router";
 
-const FabThing = () => {
+const FabThing = ({ visible }) => {
   const [open, setOpen] = useState(false);
 
   const onStateChange = ({ open }) => setOpen(open);
@@ -20,28 +20,30 @@ const FabThing = () => {
           tint="systemChromeMaterialDark"
         />
       )}
-      <Portal>
-        <FAB.Group
-          open={open}
-          icon={open ? "close" : "plus"}
-          backdropColor="transparent"
-          actions={[
-            {
-              icon: "pill",
-              label: "Adicionar Medicamento",
-              labelTextColor: "#e2e8f0",
-              onPress: () => router.push("nomeMedicamento"),
-            },
-          ]}
-          onStateChange={onStateChange}
-          onPress={() => {
-            if (open) {
-              console.log("akjd is open");
-            }
-          }}
-          style={styles.fab}
-        />
-      </Portal>
+      {visible && (
+        <Portal>
+          <FAB.Group
+            open={open}
+            icon={open ? "close" : "plus"}
+            backdropColor="transparent"
+            actions={[
+              {
+                icon: "pill",
+                label: "Adicionar Medicamento",
+                labelTextColor: "#e2e8f0",
+                onPress: () => router.push("nomeMedicamento"),
+              },
+            ]}
+            onStateChange={onStateChange}
+            onPress={() => {
+              if (open) {
+                console.log("akjd is open");
+              }
+            }}
+            style={styles.fab}
+          />
+        </Portal>
+      )}
     </>
   );
 };

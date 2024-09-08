@@ -8,8 +8,16 @@ import MyModal from "./MyModal";
 import FabThing from "./FabThing";
 import NewMedBar from "./NewMedBar";
 import CancelModal from "./CancelModal";
+import RegisterButton from "./RegisterButton";
+import ActionButtons from "./ActionsButtons";
+import HorarioField from "./HorarioField";
+import SuccessModal from "./SucessModal";
 
 export {
+  SuccessModal,
+  HorarioField,
+  ActionButtons,
+  RegisterButton,
   CancelModal,
   NewMedBar,
   FabThing,

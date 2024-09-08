@@ -4,20 +4,21 @@ import { icons } from "../../constants";
 import { TextInput, IconButton } from "react-native-paper";
 import { useState } from "react";
 import { router } from "expo-router";
-import { useMedContext } from "../../context/MedProvider";
+import { useDataContext } from "../../context/DataProvider";
 
+/* Tela para registrar o nome do medicamento a ser cadastrado */
 export default function NomeMedicamento() {
-  const { setMedData, setInitialState } = useMedContext();
+  const {setNovoMedicamento, limparNovoMedicamento } = useDataContext();
   const [nome, setNome] = useState("");
   const [modalVisible, setModalVisible] = useState(false);
 
   function handlePress() {
-    setMedData((prev) => ({ ...prev, nome }));
+    setNovoMedicamento((prev) => ({ ...prev, nome }));
     router.push("/formaFarmaceutica");
   }
 
   function handleBack() {
-    setInitialState();
+    limparNovoMedicamento();
     router.back();
   }
 
@@ -47,7 +48,6 @@ export default function NomeMedicamento() {
           />
         </View>
       </View>
-
       <CancelModal
         visible={modalVisible}
         onDismiss={() => setModalVisible(false)}

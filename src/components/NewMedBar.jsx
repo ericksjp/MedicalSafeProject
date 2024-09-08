@@ -7,11 +7,9 @@ export default function NewMedBar({
   iconBackBtn,
   title,
   icon,
-  onNextStep,
   onBackStep,
 }) {
   function onBack() {
-    console.log("erick");
     if (onBackStep) {
       onBackStep();
     } else {

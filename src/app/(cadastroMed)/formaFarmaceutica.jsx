@@ -4,7 +4,8 @@ import { Button } from "react-native-paper";
 import { router } from "expo-router";
 
 import { icons } from "../../constants";
-import { useMedContext } from "../../context/MedProvider";
+import { useDataContext } from "../../context/DataProvider";
+import { useCallback } from "react";
 
 const values = [
   "Comprimido",
@@ -15,24 +16,28 @@ const values = [
   "Pó",
 ];
 
+/* Tela para registrar a forma farmaceutica do remedio a ser cadastrado */
 export default function FormaFarmaceutica() {
-  const { setMedData } = useMedContext();
+  const { setNovoMedicamento } = useDataContext();
 
   function handlePress(item) {
-    setMedData((prev) => ({ ...prev, forma: item }));
+    setNovoMedicamento((prev) => ({ ...prev, forma: item }));
     router.push("/frequenciaDias");
   }
 
-  const renderItem = ({ item }) => (
-    <Button
-      onPress={() => handlePress(item)}
-      labelStyle={{ color: "#6750a4", fontSize: 21, textAlign: "left" }}
-      contentStyle={{ height: 50 }}
-      mode="contained-tonal"
-      compact={true}
-    >
-      {item}
-    </Button>
+  const renderItem = useCallback(
+    ({ item }) => (
+      <Button
+        onPress={() => handlePress(item)}
+        labelStyle={{ color: "#6750a4", fontSize: 21, textAlign: "left" }}
+        contentStyle={{ height: 50 }}
+        mode="contained-tonal"
+        compact={true}
+      >
+        {item}
+      </Button>
+    ),
+    []
   );
 
   return (

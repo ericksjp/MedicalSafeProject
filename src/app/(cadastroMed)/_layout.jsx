@@ -1,10 +1,13 @@
 import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
-import MedProvider from "../../context/MedProvider";
 
+/** 
+*Layout padrão para todas as telas da stack de cadastro de medicamentos 
+*/
 export default function CadastroLayout() {
   return (
-    <MedProvider>
+    <>
+
       <Stack>
         <Stack.Screen
           name="nomeMedicamento"
@@ -31,6 +34,12 @@ export default function CadastroLayout() {
           }}
         />
         <Stack.Screen
+          name="ultimaDose"
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
           name="frequenciaDoseDiaria"
           options={{
             headerShown: false,
@@ -38,6 +47,6 @@ export default function CadastroLayout() {
         />
       </Stack>
       <StatusBar backgroundColor="#6750a4" />
-    </MedProvider>
+    </>
   );
 }
