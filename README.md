@@ -1,8 +1,8 @@
 # Take Pill: Aplicação para controle e lembretes de medicamentos
 
 <p align="center">
-  <img src="imgReadme/Tela1.jpeg" width="225" height="460"/>
-  <img src="imgReadme/Tela2.jpeg" width="200" height="460"/>
+  <img src="./assets/images/Tela1.jpeg" width="225" height="460"/>
+  <img src="./assets/images/Tela2.jpeg" width="200" height="460"/>
 </p>
 
 ## Descrição do Projeto
@@ -49,4 +49,4 @@ Para buildar o projeto com o Docker:
 ## :technologist: Autores
 
 | [<img src="https://avatars.githubusercontent.com/u/126838970?v=4" width="60px;"/><br><sub>ericksjp</sub>](https://github.com/ericksjp) | [<img src="https://avatars.githubusercontent.com/u/99520151?v=4" width="60px;"/><br><sub>Tasso Moreira de Oliveira</sub>](https://github.com/tassomoreira) | [<img src="https://avatars.githubusercontent.com/u/126838970?v=4" width="60px;"/><br><sub>Gerlândio da Silva Bernardo</sub>](https://github.com/GerlandioBernardo) |
-|:---:|:---:|:---:|
+| :------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------: |
